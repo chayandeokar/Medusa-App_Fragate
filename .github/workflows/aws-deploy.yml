@@ -1,26 +1,35 @@
-name: Deploy Main Site Legacy Frontend - Angular to AWS ECS 
-on: 
-  push: 
-    branches: 
-      - main  
-jobs: 
-  deploy: 
-    runs-on: ubuntu-latest 
-    steps: 
-    - uses: actions/checkout@v2 
-    - name: Configure AWS Credentials 
-      uses: aws-actions/configure-aws-credentials@v1 
-      with: 
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} 
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
-        aws-region: ${{ secrets.AWS_REGION }} 
-    - name: Login to Amazon ECR 
-      run: aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY_URL }} 
-    - name: Build, tag, and push Docker image to ECR 
-      run: | 
-        docker build -t main-site-legacy-frontend . 
-        docker tag main-site-legacy-frontend:latest ${{ secrets.ECR_REPOSITORY_URL }}/main-site-legacy-frontend:latest 
-        docker push ${{ secrets.ECR_REPOSITORY_URL }}/main-site-legacy-frontend:latest 
-    - name: Deploy Image to ECS Service 
-      run: | 
-        aws ecs update-service --cluster main-site-legacy-frontend-cluster --service main-site-legacy-frontend-service --force-new-deployment 
+name: hello-world
+on: push
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "Hello World!"
+
+# name: Deploy Main Site Legacy Frontend - Angular to AWS ECS 
+# on: 
+#   push: 
+#     branches: 
+#       - main  
+# jobs: 
+#   deploy: 
+#     runs-on: ubuntu-latest 
+#     steps: 
+#     - uses: actions/checkout@v2 
+#     - name: Configure AWS Credentials 
+#       uses: aws-actions/configure-aws-credentials@v1 
+#       with: 
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} 
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
+#         aws-region: ${{ secrets.AWS_REGION }} 
+#     - name: Login to Amazon ECR 
+#       run: aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY_URL }} 
+#     - name: Build, tag, and push Docker image to ECR 
+#       run: | 
+#         docker build -t main-site-legacy-frontend . 
+#         docker tag main-site-legacy-frontend:latest ${{ secrets.ECR_REPOSITORY_URL }}/main-site-legacy-frontend:latest 
+#         docker push ${{ secrets.ECR_REPOSITORY_URL }}/main-site-legacy-frontend:latest 
+#     - name: Deploy Image to ECS Service 
+#       run: | 
+#         aws ecs update-service --cluster main-site-legacy-frontend-cluster --service main-site-legacy-frontend-service --force-new-deployment 
