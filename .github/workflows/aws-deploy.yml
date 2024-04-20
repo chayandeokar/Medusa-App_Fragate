@@ -1,5 +1,5 @@
 
-name: Deploy Main Site Legacy Frontend - Angular to AWS ECS 
+name: Deploy Main Site Legacy Frontend - Angular  
 on: 
   push: 
     branches: 
