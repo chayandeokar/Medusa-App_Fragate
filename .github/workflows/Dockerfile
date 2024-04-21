@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+RUN npm init
+RUN npm install express
+
 # Copy the rest of the application files
 COPY . .
 
