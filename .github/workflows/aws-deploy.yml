@@ -1,5 +1,5 @@
 
-name: Deploy Main Site Legacy Frontend - Angular  
+name: Deploy Main Site Frontend - Angular  
 on: 
   push: 
     branches: 
