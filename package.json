@@ -9,6 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+    "build:ssr": "ng build --prod && ng run my-angular-app:server:dev:ssr"
   },
   "author": "Your Name",
   "license": "MIT",
